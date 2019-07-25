@@ -7,29 +7,43 @@ const Login=(props)=>{
   return (
     <Grid centered columns={2}>
     <Grid.Column  style={{    marginTop: '200px'}}>
-        <Segment>
+        <Segment stacked>
         <Form size="large">
             <Form.Input
             fluid
+            required
             label="Email"
-             icon="mail"
-            placeholer="Enter the email"
+             icon="user"
+            placeholer="Email"
             labelPosition="left" 
             iconPosition="left">
 
             </Form.Input>
-            
             <Form.Input
             fluid
-            placeholer="Enter the password"
+            required
+            placeholer="Password"
             label="password" icon="lock"
             labelPosition="left" 
             iconPosition="left"
+            type="password"
+            >
+            </Form.Input>
+            <Form.Input
+            fluid
+            required
+            placeholer="Password"
+            label="password" icon="lock"
+            labelPosition="left" 
+            iconPosition="left"
+            type="password"
             >
             </Form.Input>
             <Form.Button
              primary 
+             
              type="primary" 
+             fluid
             size="medium"
              onClick={props.emailSignIn}>
             Log in
@@ -39,7 +53,7 @@ const Login=(props)=>{
           <Segment>
             <Form>
           <Form.Button
-          
+          fluid
            type="default"
            style={{width:'50%'}}>
             <Link to="/createaccount">
@@ -47,7 +61,8 @@ const Login=(props)=>{
           </Link>
           </Form.Button>
           <Form.Button
-          secondary
+          color="red"
+          fluid
           iconPosition="right" 
           type="dashed" 
           onClick={props.googleSignIn}>
@@ -58,6 +73,7 @@ const Login=(props)=>{
           primary
           iconPosition="right" 
           type="dashed" 
+          fluid
           onClick={props.fbSignIn}>
             Signup With Facebook
             <Icon name="facebook"></Icon>

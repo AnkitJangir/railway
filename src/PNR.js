@@ -10,7 +10,7 @@ const PNR=()=>
 }}>
       <Segment>
       <Form size="large">
-        <Form.Input placeholder="10 digit PNR no."/>
+        <Form.Input label="PNR no." required placeholder="10 digit PNR no."/>
         <Button type="link" color="facebook" >Search</Button>
         </Form>
       </Segment>

@@ -16,7 +16,6 @@ import Find from './Find'
 import SignUp from './SignUp';
 
 
-
 var firebaseConfig = {
   apiKey: "AIzaSyB7-qcrNB8r0WYzxv64RubGIa4o3BRt9M4",
   authDomain: "railwayapp-f9cfd.firebaseapp.com",
@@ -42,13 +41,15 @@ class App extends React.Component{
           from:{
             code:[],
             name:[],
-          },
-          to :{
+        },
+        to :{
             code:[],
             name:[],
-          },
-          date:new Date(),
-          findTrain:[
+        },
+        date:new Date()
+      }
+    }
+    this.state.db.searchTrain.findTrain=[
             {
               number:"",
               name:"",
@@ -60,10 +61,6 @@ class App extends React.Component{
               
             }
           ]
-        },
-      //pnr:""
-    }
-   
     this.state.flag = false;
   }
   componentDidMount(){
@@ -80,20 +77,7 @@ class App extends React.Component{
     )
     console.log(this.state.db.searchTrain.date)
   }
-  sourceCode=(e)=>{
-       console.log("Helooooooooooooooooooooo");
-       
-        let db=this.state.db.searchTrain.from;
-        db=e.target.value;
-        console.log("sourceCode"+db);
-        axios.get("https://api.railwayapi.com/v2/name-to-code/name/"+db+"/apikey/nq7e78v3j8/")
-        .then((res)=>{
-          db=res.data;
-          this.setState(
-            {db:db}
-          )
-        })
-  }
+  
 
   sourceName=(e)=>
   {
@@ -109,7 +93,7 @@ class App extends React.Component{
       this.setState(
         {db:db}
       )
-      console.log("from source"+db)
+   
     })
   }
   destinationName(e){
@@ -129,18 +113,7 @@ class App extends React.Component{
       console.log("from source"+db)
     })
   }
-  destinationCode(e){
-    let db=this.state.db.searchTrain.to;
-    db=e.target.value;
-    console.log("destinationCode"+db);
-    axios.get("https://api.railwayapi.com/v2/name-to-code/name/"+db+"/apikey/nq7e78v3j8/")
-    .then((res)=>{
-      db=res.data;
-      this.setState(
-        {db:db}
-      )
-    })
-  }
+  
   /*
   search(rail){
     let db1=rail.src;
@@ -184,9 +157,10 @@ class App extends React.Component{
   /////////Search orginal
  search(rail){
            let db=this.state.db.searchTrain.findTrain.name;
+            console.log(rail.date);
             
             console.log("Heloo form search");
-            axios.get("https://api.railwayapi.com/v2/between/source/jp/dest/dee/date/02-07-2019/apikey/nq7e78v3j8/")
+            axios.get("https://api.railwayapi.com/v2/between/source/jp/dest/dee/date/26-07-2019/apikey/nq7e78v3j8/")
             .then((res)=>{
               console.log(res.data)
             // // this.state.db.findTrain.number=res.data.trains[0].number;
@@ -194,26 +168,35 @@ class App extends React.Component{
               let i=0;
               for(i=0;i<res.data.total;i++)
               {
-                  console.log(this.state.db.searchTrain.findTrain[i]);
+  
+                  
                   
                 //db.number=res.data.trains[i].number;
                 let db=this.state.db.searchTrain.findTrain[i].name;
                 db=res.data.trains[i].name;
                 
-                //this.state.db.searchTrain.findTrain[i].name=res.data.trains[i].name;
                 this.setState({
-                                db:db
+                  db:db
                 })
+                console.log(this.state.db.searchTrain.findTrain[i]);
+                //this.state.db.searchTrain.findTrain[i].name=res.data.trains[i].name;
                 
                console.log(db);
-              /* this.state.db.searchTrain.findTrain[i].departTime=res.data.trains[i].src_departure_time;
+                db=this.state.db.searchTrain.findTrain[i].number;
+               db=res.data.trains[i].number;
+               this.setState({
+                 db:db
+               })
+               this.state.db.searchTrain.findTrain[i].departTime=res.data.trains[i].src_departure_time;
+               this.setState({
+                 db:this.state.db.searchTrain.findTrain[i].departTime
+               })
                this.state.db.searchTrain.findTrain[i].arrivalTime=res.data.trains[i].dest_arrival_time;
+               
                this.state.db.searchTrain.findTrain[i].travelTime=res.data.trains[i].travel_time;
                this.state.db.searchTrain.findTrain[i].srcStation=res.data.trains[i].from_station.name;
                this.state.db.searchTrain.findTrain[i].destStation=res.data.trains[i].to_station.name;
-                this.setState({
-                  db:db
-                })*/
+                
               /*  db=res.data.trains[i].name;
                 db=res.data.trains[i].src_departure_time;
                 db  =res.data.trains[i].dest_arrival_time;

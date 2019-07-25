@@ -10,7 +10,7 @@ const Search=(props)=>{
      let date=new Date();
      let flag=0;
      let flag1=0;
-     console.log(props.db.searchTrain.from.name)
+     
     return(
     <Grid centered columns={2}>
     <Grid.Column style={{    marginTop: '200px'}}>
@@ -20,30 +20,24 @@ const Search=(props)=>{
         search
         selection
         fluid
+        required
+        label="source station"
         placeholder="Source Station" 
         onSearchChange={props.sourceName}
         options={props.db.searchTrain.from.name}
         />
         <Form.Dropdown 
         search
+        label="destination station"
         selection 
+        required
         fluid
         placeholder="Destination Station"
          onChange={props.destinaiton}
         
          />
        <Form.Input type="date" placeholder="dd/mm/yyyy" onChange={(e)=>{date=e.target.value}}></Form.Input>
-       <Form.Input placeholder="source" 
-       onChange={(e)=>{{src=e.target.value} {(true)?flag=1:flag=0}}}>
-        
-        </Form.Input>
-       <Form.Input placeholder="dest"
-       onChange={(e)=>{{dest=e.target.value}{(true)?flag1=1:flag1=0}}}>
-         
-
-       
-       </Form.Input>
-        <Button fluid size="medium" onClick={()=>{props.search({src,dest,date,flag,flag1})}}><Link to ="/findtrain">Search</Link></Button>
+        <Button fluid size="medium"   onClick={()=>{props.search({src,dest,date,flag,flag1})}}><Link to ="/findtrain">Search</Link></Button>
         </Form>
       </Segment>
     </Grid.Column>

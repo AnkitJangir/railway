@@ -85,7 +85,7 @@ class App extends React.Component{
     let {db}=this.state;
     //db=e.target.value;
    // console.log(db);
-    axios.get("https://api.railwayapi.com/v2/suggest-station/name/"+e.target.value+"/apikey/nq7e78v3j8/")
+    axios.get("https://api.railwayapi.com/v2/suggest-station/name/"+e.target.value+"/apikey/01z2ppgdy0/")
     .then((res)=>{
       console.log(res.data)
       db.searchTrain.from.name=res.data.stations.map((item)=>{return item.name});
@@ -101,7 +101,7 @@ class App extends React.Component{
     console.log('HELLLLLLLLLLL')
     let {db}=this.state;
     db=e.target.value;
-    axios.get("https://api.railwayapi.com/v2/suggest-station/name/"+e.target.value+"/apikey/nq7e78v3j8/")
+    axios.get("https://api.railwayapi.com/v2/suggest-station/name/"+e.target.value+"/apikey/01z2ppgdy0/")
     .then((res)=>{
       console.log(res.data)
       db.searchTrain.from.name=res.data.stations.map((item)=>{return item.name});
@@ -160,7 +160,7 @@ class App extends React.Component{
             console.log(rail.date);
             
             console.log("Heloo form search");
-            axios.get("https://api.railwayapi.com/v2/between/source/jp/dest/dee/date/26-07-2019/apikey/nq7e78v3j8/")
+            axios.get("https://api.railwayapi.com/v2/between/source/jp/dest/dee/date/26-07-2019/apikey/01z2ppgdy0/")
             .then((res)=>{
               console.log(res.data)
             // // this.state.db.findTrain.number=res.data.trains[0].number;
